@@ -77,7 +77,7 @@ Table city {
   name varchar(255)
 }
 
-Table teather {
+Table theater {
   id integer [pk]
   name varchar(255)
   city_id integer [ref: > city.id]
@@ -89,9 +89,9 @@ Table studio {
   id integer [pk]
   name varchar(255)
   total_seat integer
-  teather_id integer [ref: > teather.id]
+  theater_id integer [ref: > theater.id]
 
-  Note: 'store studios in a teather e.g. STUDIO 1, STUDIO 2'
+  Note: 'store studios in a theater e.g. STUDIO 1, STUDIO 2'
 }
 
 Table seat {
