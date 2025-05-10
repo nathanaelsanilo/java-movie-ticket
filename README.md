@@ -24,22 +24,27 @@ Table order {
       2 = EXPIRED
     '''
   ]
-  ticket_id integer [ref: < ticket.id]
   customer_id integer [ref: > customer.id]
   Note: 'store customer orders'
+}
+
+Table order_detail {
+  id integer [pk]
+  ticket_id integer [ref: > ticket.id]
+  order_id integer [ref: > order.id]
 }
 
 Table ticket {
   id integer [pk]
   code varchar(10) [note: 'ticket node e.g. A01XX']
   seat_id integer [ref: - seat.id]
-  studio_schedule_id integer [ref: > studio_schedule.id]
+  studio_schedule_id integer [ref: - studio_schedule.id]
 }
 
 Table price {
   id integer [pk]
   amount double
-  code varchar [
+  code integer [
     note:
     '''
       0: FREE
@@ -47,7 +52,7 @@ Table price {
       2: HOLIDAY
     '''
   ]
-
+  seat_id integer [ref: > seat.id]
   Note: 'store pricing for a ticket'
 }
 
@@ -88,7 +93,7 @@ Table theater {
 Table studio {
   id integer [pk]
   name varchar(255)
-  total_seat integer
+  max_seat integer
   theater_id integer [ref: > theater.id]
 
   Note: 'store studios in a theater e.g. STUDIO 1, STUDIO 2'
@@ -103,7 +108,7 @@ Table seat {
       1 = BOOKED
     '''
   ]
-  category varchar [
+  category integer [
     note:
     '''
       0: REGULAR
@@ -111,22 +116,9 @@ Table seat {
       2: GOLD
     '''
   ]
+  studio_id integer [ref: > studio.id]
 
   Note: 'store seat information e.g. A1 A2 etc'
-}
-
-Table seat_price {
-  id integer [pk]
-  seat_id integer [ref: > seat.id]
-  price_id integer [ref: > price.id]
-}
-
-Table studio_seat {
-  id integer [pk]
-  studio_id integer [ref: > studio.id]
-  seat_id integer [ref: > seat.id]
-
-  Note: 'map seats to their respective studios'
 }
 
 Table schedule {
