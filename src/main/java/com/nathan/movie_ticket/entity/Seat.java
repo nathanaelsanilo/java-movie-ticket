@@ -1,6 +1,11 @@
 package com.nathan.movie_ticket.entity;
 
+import com.nathan.movie_ticket.enums.SeatCategory;
+import com.nathan.movie_ticket.enums.SeatStatus;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,9 +23,11 @@ public class Seat {
 
     private String code;
 
-    private int status;
+    @Enumerated(EnumType.ORDINAL)
+    private SeatStatus status;
 
-    private int category;
+    @Enumerated(EnumType.ORDINAL)
+    private SeatCategory category;
 
     @ManyToOne
     @JoinColumn(name = "studio_id")
@@ -42,19 +49,19 @@ public class Seat {
         this.code = code;
     }
 
-    public int getStatus() {
+    public SeatStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(SeatStatus status) {
         this.status = status;
     }
 
-    public int getCategory() {
+    public SeatCategory getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(SeatCategory category) {
         this.category = category;
     }
 

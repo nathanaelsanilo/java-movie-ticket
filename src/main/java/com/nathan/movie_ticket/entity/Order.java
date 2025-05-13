@@ -1,7 +1,11 @@
 package com.nathan.movie_ticket.entity;
 
+import com.nathan.movie_ticket.enums.OrderStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +23,8 @@ public class Order {
     @Column(name = "order_date")
     private Long orderDate;
 
-    private int status;
+    @Enumerated(EnumType.ORDINAL)
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -41,11 +46,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public int getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

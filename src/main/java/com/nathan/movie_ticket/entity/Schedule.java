@@ -21,7 +21,7 @@ public class Schedule {
     private int startTime;
 
     @Column(name = "end_time")
-    private int end_time;
+    private int endTime;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -43,12 +43,12 @@ public class Schedule {
         this.startTime = startTime;
     }
 
-    public int getEnd_time() {
-        return end_time;
+    public int getEndTime() {
+        return endTime;
     }
 
-    public void setEnd_time(int end_time) {
-        this.end_time = end_time;
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
     }
 
     public Movie getMovie() {
