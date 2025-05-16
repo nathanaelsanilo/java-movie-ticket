@@ -1,9 +1,12 @@
 package com.nathan.movie_ticket.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Table(name = "genre")
@@ -15,6 +18,9 @@ public class Genre {
     private Long id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "genres")
+    private Set<Movie> movies;
 
     public Long getId() {
         return id;
