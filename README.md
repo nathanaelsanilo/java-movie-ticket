@@ -135,4 +135,16 @@ Table studio_schedule {
   studio_id integer [ref: < studio.id]
   schedule_id integer [ref: > schedule.id]
 }
+
+Table payment {
+  id integer [pk]
+  payment_method integer [
+    note:
+    '''
+      0: CASH
+    '''
+  ]
+  amount double
+  order_id integer [ref: - order.id]
+}
 ```
