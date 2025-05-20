@@ -2,6 +2,10 @@
 
 Simulasi pembelian tiket di platform online
 
+### User Interface
+
+look at [here](./docs/movie-ticket.pdf)
+
 ### Database Schema
 
 ```
