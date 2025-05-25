@@ -17,15 +17,15 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 15)
+    @Column(length = 15, nullable = false)
     private String code;
 
     @OneToOne
-    @JoinColumn(name = "seat_id")
+    @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
 
     @OneToOne
-    @JoinColumn(name = "studio_schedule_id")
+    @JoinColumn(name = "studio_schedule_id", nullable = false)
     private StudioSchedule studioSchedule;
 
     public Long getId() {

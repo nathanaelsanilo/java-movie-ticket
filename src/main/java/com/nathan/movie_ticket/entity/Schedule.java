@@ -17,10 +17,10 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "start_time")
+    @Column(name = "start_time", nullable = false)
     private int startTime;
 
-    @Column(name = "end_time")
+    @Column(name = "end_time", nullable = false)
     private int endTime;
 
     @ManyToOne

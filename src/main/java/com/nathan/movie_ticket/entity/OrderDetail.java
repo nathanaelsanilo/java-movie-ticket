@@ -21,7 +21,7 @@ public class OrderDetail {
     private Ticket ticket;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     public Long getId() {

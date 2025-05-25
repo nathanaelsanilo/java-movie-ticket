@@ -17,10 +17,17 @@ public class Studio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "max_seat")
+    @Column(name = "max_seat", nullable = false)
     private int maxSeat;
+
+    @Column(name = "seat_column", nullable = false)
+    private int seatColumn;
+
+    @Column(name = "seat_row", nullable = false)
+    private int seatRow;
 
     @ManyToOne
     @JoinColumn(name = "theater_id")

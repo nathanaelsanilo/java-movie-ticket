@@ -3,6 +3,7 @@ package com.nathan.movie_ticket.entity;
 import com.nathan.movie_ticket.enums.SeatCategory;
 import com.nathan.movie_ticket.enums.SeatStatus;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -21,12 +22,15 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String code;
 
     @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private SeatStatus status;
 
     @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private SeatCategory category;
 
     @ManyToOne

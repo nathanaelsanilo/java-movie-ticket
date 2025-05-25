@@ -14,20 +14,21 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "order")
+@Table(name = "customer_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_date")
+    @Column(name = "order_date", nullable = false)
     private Long orderDate;
 
     @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     public Long getId() {

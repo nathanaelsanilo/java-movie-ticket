@@ -20,22 +20,38 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
 
+    @Column(nullable = true)
     private String synopsis;
 
+    @Column(nullable = false)
     private int duration;
 
-    @Column(name = "published_date")
+    @Column(name = "published_date", nullable = false)
     private int publishedDate;
 
-    private String cast;
+    @Column(name = "movie_cast", nullable = false)
+    private String movieCast;
 
+    @Column(nullable = false)
     private String rating;
+
+    @Column(nullable = false)
+    private String thumbnail;
 
     @ManyToMany
     @JoinTable(name = "movie_genre", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
 
     public Set<Genre> getGenres() {
         return genres;
@@ -85,12 +101,12 @@ public class Movie {
         this.publishedDate = publishedDate;
     }
 
-    public String getCast() {
-        return cast;
+    public String getMovieCast() {
+        return movieCast;
     }
 
-    public void setCast(String cast) {
-        this.cast = cast;
+    public void setMovieCast(String movieCast) {
+        this.movieCast = movieCast;
     }
 
     public String getRating() {
