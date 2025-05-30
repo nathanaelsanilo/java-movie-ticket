@@ -1,12 +1,15 @@
 package com.nathan.movie_ticket.controller;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nathan.movie_ticket.dto.response.ListAvailableMovieResDto;
+import com.nathan.movie_ticket.dto.response.MovieDetailResDto;
 import com.nathan.movie_ticket.dto.response.PageResDto;
 import com.nathan.movie_ticket.service.MovieService;
 
@@ -24,5 +27,10 @@ public class MovieController {
             @RequestParam(name = "city_id", required = false) Long cityId,
             @RequestParam(name = "theater_id", required = false) Long theaterId) {
         return movieService.getAvailableMovieList(cityId, theaterId, pageNumber, pageSize);
+    }
+
+    @GetMapping("{movie_id}")
+    public MovieDetailResDto getMovieDetail(@PathVariable(name = "movie_id") Long movieId) throws BadRequestException {
+        return movieService.getMovieDetail(movieId);
     }
 }
