@@ -1,5 +1,9 @@
 package com.nathan.movie_ticket.service;
 
+import java.util.Optional;
+import java.util.Set;
+
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -7,7 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.nathan.movie_ticket.dto.response.ListAvailableMovieResDto;
+import com.nathan.movie_ticket.dto.response.MovieDetailResDto;
 import com.nathan.movie_ticket.dto.response.PageResDto;
+import com.nathan.movie_ticket.entity.Genre;
+import com.nathan.movie_ticket.entity.Movie;
 import com.nathan.movie_ticket.repository.MovieRepository;
 
 @Service
@@ -25,6 +32,34 @@ public class MovieService {
                 movies.getContent(),
                 movies.getTotalPages(),
                 movies.getTotalElements());
+        return response;
+    }
+
+    public MovieDetailResDto getMovieDetail(Long movieId) throws BadRequestException {
+        Optional<Movie> movie = movieRepository.findById(movieId);
+
+        if (movie.isEmpty()) {
+            throw new BadRequestException("movie not found!");
+        }
+
+        Set<Genre> genres = movie.get().getGenres();
+        String genreString = "";
+
+        for (Genre item : genres) {
+            genreString += item.getName() + ",";
+        }
+
+        MovieDetailResDto response = new MovieDetailResDto(
+                movie.get().getThumbnail(),
+                movie.get().getRating(),
+                genreString,
+                movie.get().getPublishedDate().getTime(),
+                movie.get().getTitle(),
+                movie.get().getSynopsis(),
+                movie.get().getMovieCast(),
+                movie.get().getDuration(),
+                movie.get().getId());
+
         return response;
     }
 

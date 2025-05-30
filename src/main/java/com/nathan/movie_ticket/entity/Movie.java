@@ -1,5 +1,6 @@
 package com.nathan.movie_ticket.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -30,7 +31,7 @@ public class Movie {
     private int duration;
 
     @Column(name = "published_date", nullable = false)
-    private int publishedDate;
+    private Date publishedDate;
 
     @Column(name = "movie_cast", nullable = false)
     private String movieCast;
@@ -93,11 +94,11 @@ public class Movie {
         this.duration = duration;
     }
 
-    public int getPublishedDate() {
+    public Date getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(int publishedDate) {
+    public void setPublishedDate(Date publishedDate) {
         this.publishedDate = publishedDate;
     }
 
