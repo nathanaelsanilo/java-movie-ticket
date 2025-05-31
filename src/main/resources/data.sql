@@ -1604,3 +1604,7 @@ VALUES
 insert into studio_schedule (schedule_id, studio_id)
 select s.id, st.id
 from schedule s, studio st;
+
+-- profile dummy
+insert into users (name, email)
+values ('nathan', 'nathan@mail.com');
