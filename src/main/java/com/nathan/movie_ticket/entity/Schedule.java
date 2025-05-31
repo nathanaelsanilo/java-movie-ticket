@@ -1,5 +1,7 @@
 package com.nathan.movie_ticket.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +20,10 @@ public class Schedule {
     private Long id;
 
     @Column(name = "start_time", nullable = false)
-    private int startTime;
+    private Date startTime;
 
     @Column(name = "end_time", nullable = false)
-    private int endTime;
+    private Date endTime;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
@@ -35,19 +37,19 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public int getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(int endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
