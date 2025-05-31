@@ -4,7 +4,7 @@ import java.util.Date;
 
 public record ScheduleStudioDto(
         Date showTime,
-        Long studioScheduleId,
+        Long scheduleId,
         String theaterName,
         Long studioId,
         String movieName) {

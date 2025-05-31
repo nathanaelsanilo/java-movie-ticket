@@ -12,7 +12,7 @@ import com.nathan.movie_ticket.entity.StudioSchedule;
 public interface StudioScheduleRepository extends JpaRepository<StudioSchedule, Long> {
 
         @Query(value = """
-                        select new com.nathan.movie_ticket.dto.projection.ScheduleStudioDto(sc.startTime, ss.id, t.name, s.id, m.title)
+                        select new com.nathan.movie_ticket.dto.projection.ScheduleStudioDto(sc.startTime, sc.id, t.name, s.id, m.title)
                         from StudioSchedule ss
                         join ss.studio s
                         join s.theater t
