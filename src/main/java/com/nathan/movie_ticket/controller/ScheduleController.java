@@ -24,13 +24,12 @@ public class ScheduleController {
     @GetMapping
     public List<ListScheduleMovieResDto> getMethodName(
             @RequestParam(name = "movie_id", required = true) Long movieId,
-            @RequestParam(name = "theater_id", required = true) Long theaterId) throws BadRequestException {
+            @RequestParam(name = "theater_id", required = true) Long theaterId) {
         return scheduleService.getListAvailableScheduleByMovie(movieId, theaterId);
     }
 
     @GetMapping("{schedule_id}")
-    public ScheduleDetailResDto getDetailSchedule(@PathVariable(name = "schedule_id") Long scheduleId)
-            throws BadRequestException {
+    public ScheduleDetailResDto getDetailSchedule(@PathVariable(name = "schedule_id") Long scheduleId) {
         return scheduleService.getDetailSchedule(scheduleId);
     }
 

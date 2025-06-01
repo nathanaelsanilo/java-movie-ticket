@@ -3,12 +3,13 @@ package com.nathan.movie_ticket.service;
 import java.util.Optional;
 import java.util.Set;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.nathan.movie_ticket.dto.response.ListAvailableMovieResDto;
 import com.nathan.movie_ticket.dto.response.MovieDetailResDto;
@@ -35,11 +36,11 @@ public class MovieService {
         return response;
     }
 
-    public MovieDetailResDto getMovieDetail(Long movieId) throws BadRequestException {
+    public MovieDetailResDto getMovieDetail(Long movieId) {
         Optional<Movie> movie = movieRepository.findById(movieId);
 
         if (movie.isEmpty()) {
-            throw new BadRequestException("movie not found!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "movie not found!");
         }
 
         Set<Genre> genres = movie.get().getGenres();

@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.nathan.movie_ticket.dto.projection.ScheduleStudioDto;
 import com.nathan.movie_ticket.dto.response.ListScheduleMovieResDto;
@@ -41,11 +42,11 @@ public class ScheduleService {
         return response;
     }
 
-    public ScheduleDetailResDto getDetailSchedule(Long scheduleId) throws BadRequestException {
+    public ScheduleDetailResDto getDetailSchedule(Long scheduleId) {
         Optional<Schedule> scheduleOptional = scheduleRepository.findById(scheduleId);
 
         if (scheduleOptional.isEmpty()) {
-            throw new BadRequestException("schedule not found!");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "movie not found!");
         }
 
         Schedule schedule = scheduleOptional.get();
