@@ -30,7 +30,7 @@ public class MovieController {
     }
 
     @GetMapping("{movie_id}")
-    public MovieDetailResDto getMovieDetail(@PathVariable(name = "movie_id") Long movieId) throws BadRequestException {
+    public MovieDetailResDto getMovieDetail(@PathVariable(name = "movie_id") Long movieId) {
         return movieService.getMovieDetail(movieId);
     }
 }
