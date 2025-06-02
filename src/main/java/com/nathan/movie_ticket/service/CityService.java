@@ -33,7 +33,7 @@ public class CityService {
         Pageable firstPageWithTwoElements = PageRequest.of(pageNumber, pageSize, Sort.by(defaultSort).ascending());
         Page<City> allCities;
 
-        if (cityName.isBlank()) {
+        if (cityName == null || cityName.isBlank()) {
             allCities = cityRepository.findAll(firstPageWithTwoElements);
         } else {
             allCities = cityRepository.findByNameIgnoreCase(firstPageWithTwoElements, cityName);
