@@ -1,0 +1,14 @@
+target/
+build/
+.gradle/
+.idea/
+.mvn/
+*.iml
+*.log
+Dockerfile
+mvnw
+mvnw.cmd
+gradlew
+gradlew.bat
+.git/
+.gitignore

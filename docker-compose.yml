@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: movie-ticket-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - movie-ticket-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  db:
+    image: postgres:14
+    container_name: movie-ticket-db
+    environment:
+      POSTGRES_DB: movie_ticket
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - movie-ticket-network
+
+volumes:
+  db_data:
+
+networks:
+  movie-ticket-network:
